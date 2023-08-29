@@ -8,3 +8,6 @@ game 'gta5'
 server_script 'Anti-XSS/*.lua'
 client_script 'Anti-XSS/*.lua'
 
+-- Anti vpn
+server_script 'Anti-Vpn/*.lua'
+client_script 'Anti-Vpn/*.lua'
