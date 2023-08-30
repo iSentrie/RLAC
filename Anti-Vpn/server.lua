@@ -1,15 +1,14 @@
-local ip = ""
-local webhook = ""
 local playerIP = GetPlayerEndpoint(source)
 local api = string.format("https://proxycheck.io/v2/%s?vpn=1&asn=1", playerIP)
-local data = json.decode(response)
-AddEventHandler('playerConnecting', function(playerName, setKickReason, deferrals)
-    
-   PerformHttpRequest(api, function(response, headers)
-    
-    
 
-   
-  
+AddEventHandler('playerConnecting', function(playerName, kick, deferrals)
+    
+    PerformHttpRequest(api, function(response)
+        local api2 = json.decode(response or "")
 
+        if api2 and api2[playerIP] and api2[playerIP].proxy == "yes" then
+            kick("No VPNs allowed on this server.")
+            CancelEvent()
+        end
+    end)
 end)
