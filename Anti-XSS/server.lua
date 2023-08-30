@@ -1,7 +1,7 @@
 local webhookURL = '' -- Discord webhook URL
 local kickMsg = 'Nice Try.'
 
-local function hasXSS(str)
+local function gayXSS(str)
     local patterns = {
         "<%w", "</%w", "<style>.*</style>", "<script>.*</script>", "&%w+;", "javascript:", "window%.", 
         "document%.", "alert%(", "function%(", "console%.log%(", "var% ", "let% ", "const% ", "%(", "%)", "{", "}", 
@@ -16,8 +16,8 @@ local function hasXSS(str)
     return false
 end
 
-AddEventHandler('playerConnecting', function(playerName, setKickReason, deferrals)
-    if hasXSS(playerName) then
+AddEventHandler('playerConnecting', function(playerName, kick, deferrals)
+    if gayXSS(playerName) then
         local identifiers = GetPlayerIdentifiers(source)
         local steamID, discordID = nil, nil
         
