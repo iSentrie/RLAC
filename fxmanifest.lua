@@ -12,3 +12,7 @@ client_script 'Anti-XSS/*.lua'
 server_script 'Anti-Vpn/*.lua'
 client_script 'Anti-Vpn/*.lua'
 
+-- Anti STATEBAG
+server_script 'Anti-StateBag/*.lua'
+client_script 'Anti-StateBag/*.lua'
+
