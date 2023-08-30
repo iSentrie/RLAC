@@ -5,14 +5,14 @@ game 'gta5'
 
 
 -- Anti XSS
-server_script 'Anti-XSS/*.lua'
-client_script 'Anti-XSS/*.lua'
+server_script 'ANTI-XSS/*.lua'
+client_script 'ANTI-XSS/*.lua'
 
 -- Anti VPN
-server_script 'Anti-Vpn/*.lua'
-client_script 'Anti-Vpn/*.lua'
+server_script 'ANTI-VPN/*.lua'
+client_script 'ANTI-VPN/*.lua'
 
 -- Anti STATEBAG
-server_script 'Anti-StateBag/*.lua'
-client_script 'Anti-StateBag/*.lua'
+server_script 'ANTI-STATEBAG/*.lua'
+client_script 'ANTI-STATEBAG/*.lua'
 
