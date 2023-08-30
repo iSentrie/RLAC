@@ -1,5 +1,5 @@
-local webhookUrl = Config.webhookUrl
 -- create varibles
+local webhookUrl = Config.webhookUrl
 local playerIP = GetPlayerEndpoint(source)
 local api = string.format("https://proxycheck.io/v2/%s?vpn=1&asn=1", playerIP)
 local api2 = json.decode(response or "")
