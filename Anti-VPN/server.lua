@@ -1,11 +1,11 @@
 local webhookUrl = Config.webhookUrl
 -- Get the Player ip
-local playerIP = GetPlayerEndpoint(source)
 local api = string.format("https://proxycheck.io/v2/%s?vpn=1&asn=1", playerIP)
 local api2 = json.decode(response or "")
 local message = string.format("RLAC: Detected VPN, ip:", playerIP) 
 
 AddEventHandler('playerConnecting', function(playerName, kick, deferrals)   
+    local playerIP = GetPlayerEndpoint(source)
     PerformHttpRequest(api, function(response)
         if api2 and api2[playerIP] and api2[playerIP].proxy == "yes" then
             kick("No VPNs allowed on this server.")
