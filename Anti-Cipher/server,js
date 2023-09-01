@@ -1,3 +1,7 @@
+
+// from some random repo.
+
+
 const { exec } = require('child_process');
 const platform = process.platform;
 const blacklistedDomains = ['cipher-panel.me', 'ciphercheats.com', 'keyx.club', 'dark-utilities.xyz']
