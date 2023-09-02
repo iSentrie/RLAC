@@ -1,6 +1,6 @@
 @echo off
 
-
+echo if doesn't work run as admin
 
 title [Anti-Charon ~ Stops Charon from running attacks with there skid net]
 color 0a

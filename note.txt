@@ -1,0 +1,6 @@
+
+                    L7 PROTECTION
+
+                    sv_endpointprivacy true
+                    sv_requestParanoia 3
+                    Also, run 40120-disable to Disable your 40120 port to ensure that you can't slapped by a skid.
