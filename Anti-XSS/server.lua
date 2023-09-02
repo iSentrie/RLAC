@@ -1,31 +1,28 @@
-local patterns = {}
-local default = {"<!DOCTYPE>","<html>","<head>","<title>","<meta>","<link>","<style>","<script>","<body>","<h1>","<h2>","<h3>","<h4>","<h5>","<h6>","<p>","<a>","<img>","<ul>","<li>","<ol>","<dl>","<dt>","<dd>","<blockquote>","<div>","<span>","<table>","<tr>","<th>","<td>","<form>","<input>","<button>","<textarea>","<select>","<label>","<iframe>","<audio>","<video>","<canvas>","<svg>","<header>","<nav>","<main>","<article>","<section>","<aside>","<footer>","<time>","<mark>","<abbr>","<code>","<pre>","<hr>","<br>"}
+local patterns = { "<!DOCTYPE>","<a>", "<abbr>", "<address>", "<area>", "<article>", "<aside>", "<audio>","<b>", "<base>", "<basefont>", "<bdi>", "<bdo>", "<big>", "<blockquote>", "<body>", "<br>", "<button>","<canvas>", "<caption>", "<center>", "<cite>", "<code>", "<col>", "<colgroup>","<data>", "<datalist>", "<dd>", "<del>", "<details>", "<dfn>", "<dialog>", "<dir>", "<div>", "<dl>", "<dt>","<em>", "<embed>","<fieldset>", "<figcaption>", "<figure>", "<font>", "<footer>", "<form>", "<frame>", "<frameset>","<h1>", "<h2>", "<h3>", "<h4>", "<h5>", "<h6>", "<head>", "<header>", "<hr>", "<html>","<i>", "<iframe>", "<img>", "<input>", "<ins>", "<kbd>", "<keygen>", "<label>", "<legend>", "<li>", "<link>", "<listing>","<main>", "<map>", "<mark>", "<marquee>", "<menu>", "<menuitem>", "<meta>", "<meter>","<nav>", "<noframes>", "<noscript>", "<object>", "<ol>", "<optgroup>", "<option>", "<output>","<p>", "<param>", "<picture>", "<pre>", "<progress>","<q>","<rp>", "<rt>", "<ruby>","<s>", "<samp>", "<script>", "<section>", "<select>", "<small>", "<source>", "<span>", "<strike>", "<strong>", "<style>", "<sub>", "<summary>", "<sup>", "<svg>","<table>", "<tbody>", "<td>", "<template>", "<textarea>", "<tfoot>", "<th>", "<thead>", "<time>", "<title>", "<tr>", "<track>","<u>", "<ul>","<var>", "<video>","<wbr>", "<script", "<" }
 
-PerformHttpRequest('https://raw.githubusercontent.com/Endpoints1337/RLAC/main/Anti-XSS/check.json', function(statusCode, response, headers)
-    if statusCode == 200 then
-        patterns = json.decode(response)
-    else
-        print("Using default one cuz.")
-        patterns = default
-    end
-end, 'GET')
+
 
 local function isXss(inputString)
+    local lowerInput = string.lower(inputString)
     for _, pattern in ipairs(patterns) do
-        if string.match(inputString, pattern) then
+        local escapedPattern = string.gsub(pattern, "([%(%)%.%%%+%-%*%?%[%^%$])", "%%%1")
+        if string.find(lowerInput, escapedPattern) then
             return true
         end
     end
     return false
 end
 
+
 AddEventHandler('playerConnecting', function(playerName, kickReason, deferrals)
     deferrals.defer()
     local hasXSS = isXss(playerName)
     
     if hasXSS then
-        deferrals.done("You Are Using XSS")
+        local message = string.format(" You aren't allowed to have that name sir.")
+        deferrals.done(message)
     else
         deferrals.done()
     end
 end)
+
